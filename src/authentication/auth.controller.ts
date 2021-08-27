@@ -12,6 +12,7 @@ export class AuthController {
       @Body('password') userPassword: string,
     ) 
     {
+      userName = userName.toLowerCase();
       await this.authService.signup(
         userName,
         userPassword,
@@ -26,6 +27,7 @@ export class AuthController {
         @Res({passthrough: true}) response: Response,   
     )
     {
+        userName = userName.toLowerCase();
         const jwtToken = await this.authService.login(
             userName,
             userPassword,
