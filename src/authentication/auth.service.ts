@@ -1,21 +1,35 @@
-import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
+import { BadRequestException, Injectable, NotFoundException, UseGuards } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model, Query } from "mongoose";
 import { User } from "src/Database/Users/users.model";
 import * as bcrypt from 'bcrypt';
 import { JwtStrategy } from "./jwt.strategy";
+import { JwtService } from "@nestjs/jwt";
+import { LocalAuthGuard } from "./local-auth.guard";
+import { SignupUserDto } from "./dto/signup-user.dto";
 
 
 @Injectable()
 export class AuthService {
 
-    constructor(@InjectModel('Users') private readonly userModel: Model<User>, private jwtStrategy: JwtStrategy) {}
+    constructor(@InjectModel('Users') private readonly userModel: Model<User>, private jwtStrategy: JwtStrategy, private jwtService: JwtService) {}
+
+    async validateUser(username: string, password: string): Promise<any> {
+        const user = await this.findUser(username);
+        
+        if(user && await bcrypt.compare(password, user.password)) {
+            return user;
+        }
+        return null;
+    }
 
     async findUser(username: string): Promise<Query<User, User, {}, User>> {
         return await this.userModel.findOne({username});
     }
 
-    async signup(username: string, password: string) {
+    async signup(signupUserdto: SignupUserDto) {
+        var username = signupUserdto.username;
+        var password = signupUserdto.password;
         if (await this.findUser(username)) {
             throw new BadRequestException('username exists');
         }
@@ -29,18 +43,9 @@ export class AuthService {
         return user;
     }
 
-    async login(username: string, password: string) {
-        const user = await this.findUser(username);
-
-        if (!user) {
-            throw new BadRequestException('invalid credentials');
-        }
-        if(!await bcrypt.compare(password, user.password)) {
-            throw new BadRequestException('invalid credentials');
-        }
-
-        const jwt = await this.jwtStrategy.createJWT(user.id);
-        return jwt;
+    async login(user: User) {
+        const payload = user;
+        return this.jwtService.sign({payload})
     }
 }
 
