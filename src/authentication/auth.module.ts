@@ -5,10 +5,13 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UserSchema } from 'src/Database/Users/users.model';
 import { JwtStrategy } from './jwt.strategy';
 import { JwtModule } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
+import { LocalStrategy } from './local.strategy';
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: 'Users', schema: UserSchema }]), JwtModule.register({secret: "Secret"})],
+  imports: [MongooseModule.forFeature([{ name: 'Users', schema: UserSchema }]), JwtModule.register({secret: "Secret", signOptions: { expiresIn: '60000s'}}), PassportModule],
   controllers: [AuthController],
-  providers: [AuthService, JwtStrategy],
+  providers: [AuthService, JwtStrategy, LocalStrategy],
+  exports: [AuthService],
 })
 export class AuthenicationModule {}
