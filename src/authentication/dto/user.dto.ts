@@ -5,11 +5,10 @@ export class UserDto {
         Object.assign(this, partial);
       }
 
-    
     id?: string;
-
+    
     username: string;
-
+    
     @Exclude()
     password: string;
 
