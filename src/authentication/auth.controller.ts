@@ -3,7 +3,6 @@ import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './local-auth.guard';
 import { UserDto } from './dto/user.dto';
 import { JwtAuthGuard } from './jwt-auth.guard';
-import { ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
 
 @Controller('users')
 export class AuthController {
