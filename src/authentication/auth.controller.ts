@@ -1,4 +1,4 @@
-import { Controller, Body, Put, Res, Post, UseGuards, Request, Get } from '@nestjs/common';
+import { Controller, Body, Put, Res, Post, UseGuards, Request, Get, Delete } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './local-auth.guard';
 import { UserDto } from './dto/user.dto';
@@ -27,6 +27,12 @@ export class AuthController {
     async getUser(@Request() req) {
       const userDto = new UserDto({username: req.user});
       return req.user;
+    }
+
+    @Delete('delete')
+    async deleteUser(@Body() body: UserDto) {
+      await this.authService.deleteUser(body);
+      return { message: 'User Deleted'};
     }
 }
   

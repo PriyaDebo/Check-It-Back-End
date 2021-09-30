@@ -1,51 +1,47 @@
 import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { Model, Query } from "mongoose";
-import { ChecklistDto } from "src/authentication/dto/checklists.dto";
-import { List as CheckList } from "src/Database/Checklists/checklists.model";
+import { Model, Query, Types } from "mongoose";
+import { ChecklistDto } from "src/checklists/dto/checklists.dto";
+import { CheckList, CheckListDocument } from "src/Database/Checklists/checklists.model";
 
 @Injectable()
 export class ListService {
 
-    constructor(@InjectModel('Checklists') private readonly listModel: Model<CheckList>) {}
+    constructor(@InjectModel('Checklists') private readonly listModel: Model<CheckListDocument>) {}
 
-    async findlist(id: string, name: string): Promise<CheckList> {
-        return await this.listModel.findOne({id, name});
+    async findlist(id: string): Promise<CheckListDocument> {
+        return await this.listModel.findOne({_id: id});
     }
 
     async createList(createChecklistDto: ChecklistDto) {
-        var id = createChecklistDto.id;
         var name = createChecklistDto.name;
         var items = createChecklistDto.items;
+        var userId = createChecklistDto.userId;
         const newList = new this.listModel({
-            id,
+            userId,
             name,
             items
         });
-        if (await this.findlist(id, name)) {
-            throw new BadRequestException('username exists');
-        }
         const checklist = await newList.save();
         return checklist;
     }
 
-    async updateList(updateChecklistDto: ChecklistDto) {
-        var id = updateChecklistDto.id;
-        var name = updateChecklistDto.name;
+    async updateList(id: string, updateChecklistDto: ChecklistDto) {
         var items = updateChecklistDto.items;
-        const checklist = await this.findlist(id, name);
+        const checklist = await this.findlist(id);
         if (!checklist) {
             throw new NotFoundException('List not found');
         }
+        checklist.name = updateChecklistDto.name;
         checklist.items = items;
-        this.listModel.save(checklist);
+        // return await this.listModel.updateOne(checklist);
+        checklist.save();
+        return checklist;
     }
 
     async deleteList(deleteListDto: ChecklistDto) {
         var id = deleteListDto.id;
-        var name = deleteListDto.name;
-        var items = deleteListDto.items;
-        const result = await this.listModel.deleteOne({id: id, name: name});
+        const result = await this.listModel.deleteOne({id});
         if (result.n === 0) {
             throw new NotFoundException('List not found');
         }

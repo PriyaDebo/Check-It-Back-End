@@ -1,5 +1,5 @@
-import { Body, Controller, Delete, Patch, Put } from "@nestjs/common";
-import { ChecklistDto } from "src/authentication/dto/checklists.dto";
+import { Body, Controller, Delete, Param, Patch, Put } from "@nestjs/common";
+import { ChecklistDto } from "src/checklists/dto/checklists.dto";
 import { ListService } from "./checklists.service";
 
 @Controller('checklists')
@@ -12,9 +12,9 @@ export class ListController {
         return { message: 'List Created'};
     }
 
-    @Patch('update')
-    async updateList(@Body() body: ChecklistDto) {
-        await this.listservice.updateList(body);
+    @Patch('update/id/:id')
+    async updateList(@Param('id') id: string, @Body() body: ChecklistDto) {
+        await this.listservice.updateList(id, body);
         return { message: 'List updated'};
     }
 

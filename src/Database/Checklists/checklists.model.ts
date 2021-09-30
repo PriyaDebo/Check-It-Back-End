@@ -1,18 +1,19 @@
-import { Document } from 'mongoose';
+import { Document, Mongoose, Types } from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ListItem } from './lists.model';
+import { User } from '../Users/users.model';
 
-export type ListDocument = List & Document;
+export type CheckListDocument = CheckList & Document;
 
 @Schema()
-export class List {
-    @Prop()
-    id: string;
+export class CheckList {
+    @Prop({ type: Types.ObjectId, ref: 'User' })
+    userId: User;
     @Prop()
     name: string;
     @Prop()
     items: ListItem[];
 }
 
-export const ListSchema = SchemaFactory.createForClass(List);
+export const ListSchema = SchemaFactory.createForClass(CheckList);
 
