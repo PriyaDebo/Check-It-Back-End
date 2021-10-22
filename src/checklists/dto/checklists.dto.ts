@@ -1,12 +1,20 @@
 import { ListItem } from "src/checklists/dto/listitems.dto";
+import { CheckListDocument } from "src/Database/Checklists/checklists.model";
 
 export class ChecklistDto {
 
-    id?: string;
+    constructor(checkList: CheckListDocument) {
+        this.id = checkList._id;
+        this.userId = checkList.userId;
+        this.name = checkList.name;
+        this.items = checkList.items;
+    }
 
-    userId: string;
+    id?: String;
 
-    name: string;
+    userId: String;
+
+    name: String;
 
     items: ListItem[];
 }

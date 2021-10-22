@@ -8,9 +8,9 @@ export type CheckListDocument = CheckList & Document;
 @Schema()
 export class CheckList {
     @Prop({ type: Types.ObjectId, ref: 'User' })
-    userId: User;
+    userId: String;
     @Prop()
-    name: string;
+    name: String;
     @Prop()
     items: ListItem[];
 }
