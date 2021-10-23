@@ -8,6 +8,7 @@ import { ListService } from "./checklists.service";
 export class ListController {
     constructor(private readonly listservice: ListService) {}
 
+    @UseGuards(JwtAuthGuard)
     @Put('create')
     async addList(@Body() body: ChecklistDto) {
         await this.listservice.createList(body);
