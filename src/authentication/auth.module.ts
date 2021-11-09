@@ -9,7 +9,7 @@ import { PassportModule } from '@nestjs/passport';
 import { LocalStrategy } from './local.strategy';
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: 'Users', schema: UserSchema }]), JwtModule.register({secret: "Secret", signOptions: { expiresIn: '60000s'}}), PassportModule],
+  imports: [MongooseModule.forFeature([{ name: 'Users', schema: UserSchema }]), JwtModule.register({secret: "Secret", signOptions: { expiresIn: '600000s'}}), PassportModule],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy, LocalStrategy],
   exports: [AuthService],

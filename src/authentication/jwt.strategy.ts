@@ -7,7 +7,7 @@ import { UserDto } from "./dto/user.dto";
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
     constructor(private authService: AuthService) {
-        super({
+        super( {
             secretOrKey: "Secret",
             jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
             ignoreExpiration: false,
