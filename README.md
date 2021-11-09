@@ -1,73 +1,61 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+# Check It!  
+  Check It! is an android application in which users can create, update and delete checklists, after creating an account for themselves. 
+ 
+ ```
+ This repository contains the server side code of the application.
+ ```
+  
+## General Features:  
+ - Unlimited of checklists can be created.  
+ - Each checklist can have as many items as the user wishes.  
+ - All the checklists can be updated at any time.   
+ - Items in a checklist as well as an entire checklist can be deleted anytime.   
+ - All the data will be stored against an account rather than a local host. So, the app can be used on various devices simultaneously.  
+  
+## Tech Stack:   
+- Frontend Development: Flutter  
+- Server Side Development:  NestJs  
+- API: Rest API  
+- Database: MongoDB
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## How to Use:
+> Visit [PriyaDebo/Check-It (github.com)](https://github.com/PriyaDebo/Check-It) before proceeding with the following steps for installing the front side of the application.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
-
-```bash
+**Step 1:**
+>Download or clone this repository by using the link given below. 
+```
+https://github.com/PriyaDebo/Check-It-Back-End.git
+```
+**Step 2:**
+>Installation
+```
 $ npm install
 ```
 
-## Running the app
+**Step 3:**
 
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+> To the run the app follow these steps:
 ```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+ Running the app
+ In development mode: $ npm run start
+ In watch mode: $ npm run start:dev
+ In production mode: $ npm run start:prod
 ```
+## Folder Structure
+Here is the folder structure I have been using in this project:
+```
+src/
+|-Database/
+|-authentication/
+|-checklists/
+|-common/
+|-app.controller.spec.ts
+|-app.controller.ts
+|-app.module.ts
+|-app.service.ts
+|-main.ts
+test/
+```
+## Conclusion
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+I will be happy to answer any questions that you may have regarding this project, and if you want to lend a hand with the project then please feel free to submit an issue and/or pull request.
