@@ -21,7 +21,6 @@ This repository contains the server side code of the application.
 -   API: Rest API
 -   Database: MongoDB
 
-## Download 
 
 ## How to Use:
 
