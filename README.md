@@ -29,7 +29,9 @@ This repository contains the server side code of the application.
 
 **Step 1:**
 >[Download and install Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+>
 >[Download and Install Compass — MongoDB Compass](https://docs.mongodb.com/compass/current/install/)
+>
 >[Create a database](https://docs.mongodb.com/compass/current/databases/#create-a-database) in the compass named **CheckIt**. In the database create two collections, named **users** and **checklists**.
 
 
