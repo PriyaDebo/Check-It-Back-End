@@ -21,17 +21,12 @@ This repository contains the server side code of the application.
 -   API: Rest API
 -   Database: MongoDB
 
-
 ## How to Use:
 
 > Visit  [PriyaDebo/Check-It (github.com)](https://github.com/PriyaDebo/Check-It)  before proceeding with the following steps for installing the front side of the application.
 
 **Step 1:**
->[Download and install Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
->
->[Download and Install Compass — MongoDB Compass](https://docs.mongodb.com/compass/current/install/)
->
->[Create a database](https://docs.mongodb.com/compass/current/databases/#create-a-database) in the compass named **CheckIt**. In the database create two collections, named **users** and **checklists**.
+>[Download and install Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)<br>[Download and Install Compass — MongoDB Compass](https://docs.mongodb.com/compass/current/install/)<br>[Create a database](https://docs.mongodb.com/compass/current/databases/#create-a-database) in the compass named **CheckIt**. In the database create two collections, named **users** and **checklists**.
 
 
 **Step 2:**
@@ -51,9 +46,18 @@ $ npm install
 ```
 
 **Step 4:**
+>Check the port in which the MongoDB compass is running. If it is `localhost:27017`, proceed to Step 5.<br>If it is different, follow these steps:
+```
+1. Open the file src/app.module.ts
+2. Find the following code in line 9
+	imports: [AuthenicationModule,  MongooseModule.forRoot('mongodb://localhost:27017/CheckIt'),  ChecklistsModule],
+3. Modify the port to match yours:
+	imports: [AuthenicationModule,  MongooseModule.forRoot('mongodb://localhost:<port>/CheckIt'),  ChecklistsModule],
+```
+
+**Step 5:**
 
 > To the run the app follow these steps:
-
 ```
  Running the app
  In development mode: $ npm run start
